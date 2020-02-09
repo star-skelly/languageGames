@@ -7,8 +7,8 @@ public class Dictionary {
 	public static WordStructures Lang;
 	private static ArrayList<String> englishNouns;
 	private static ArrayList<String> equivNouns;
-	private static ArrayList<String> engWords;
-	private static ArrayList<ArrayList<String>> aelgarWords;
+	private static ArrayList<ArrayList<String>> engWords;
+	private static ArrayList<String> aelgarWords;
 
 	public Dictionary() {
 		Lang = new WordStructures();
@@ -34,13 +34,15 @@ public class Dictionary {
 		Scanner iFile = new Scanner(new File("eng.txt"));
 		Scanner dFile = new Scanner(new File("aelgai.txt"));
 		while (iFile.hasNext()) {
-			ArrayList temp = new ArrayList<String>();
-			ArrayList temp1 = new ArrayList<String>();
+			ArrayList<String> temp = new ArrayList<String>();
+			ArrayList<String> temp1 = new ArrayList<String>();
 			temp.add(iFile.nextLine());
 			for(int a = 0; a < temp.size(); a++){
 				int prev = 0;
-				if(temp.get(temp.size()-1).substring(a,a+1).equals("/")){
-					temp1.add(temp.get(temp.size()-1).substring(prev,a));
+				int sized = temp.size()-1;
+				String wordeds = temp.get(sized);
+				if(wordeds.substring(a,a+1).equals("/")){
+					temp1.add(wordeds.substring(prev,a));
 					prev=a+1;
 				}
 			}
