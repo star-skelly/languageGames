@@ -7,6 +7,8 @@ public class Dictionary {
 	public static WordStructures Lang;
 	private static ArrayList<String> englishNouns;
 	private static ArrayList<String> equivNouns;
+	private static ArrayList<String> engWords;
+	private static ArrayList<ArrayList<String>> aelgarWords;
 
 	public Dictionary() {
 		Lang = new WordStructures();
@@ -25,6 +27,25 @@ public class Dictionary {
 		while (iFile.hasNext()) {
 			englishNouns.add(iFile.nextLine());
 			equivNouns.add(Lang.makeWord());
+		}
+	}
+
+	public void fillEngWordList() throws IOException {
+		Scanner iFile = new Scanner(new File("eng.txt"));
+		Scanner dFile = new Scanner(new File("aelgai.txt"));
+		while (iFile.hasNext()) {
+			ArrayList temp = new ArrayList<String>();
+			ArrayList temp1 = new ArrayList<String>();
+			temp.add(iFile.nextLine());
+			for(int a = 0; a < temp.size(); a++){
+				int prev = 0;
+				if(temp.get(temp.size()-1).substring(a,a+1).equals("/")){
+					temp1.add(temp.get(temp.size()-1).substring(prev,a));
+					prev=a+1;
+				}
+			}
+			engWords.add(temp);
+			aelgarWords.add(dFile.nextLine());
 		}
 	}
 
@@ -61,7 +82,7 @@ public class Dictionary {
 		//Strings we will be filling
 		String translation = "";
 		String stripped = "";
-		
+
 		//finding punctuation placement
 		//for loop goes through each character
 		for(int i = 0; i<sentence.length(); i++){
@@ -102,7 +123,7 @@ public class Dictionary {
 				}
 				epositions.add(spaceCount);
 			}
-			
+
 		}
 		String[] noPeriods = sentence.split("\\.");
 		for (String word : noPeriods) {
@@ -164,6 +185,19 @@ public class Dictionary {
 		}
 		String capital = translation.substring(0, 1).toUpperCase() + translation.substring(1);
 		return capital;
+	}
+
+	public String translateToAelgai(String word) {
+		String translation = "";
+		for (int i = 0; i < engWords.size(); i++) {
+			for(String engWord : engWords.get(i)){
+				if(word.equalsIgnoreCase(engWord)) {
+					translation = aelgarWords.get(i);
+					return translation;
+				}
+			}
+		}
+		return "(no translation for " + word + ")";
 	}
 
 	public String translate(String word) {

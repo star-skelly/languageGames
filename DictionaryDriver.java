@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class DictionaryDriver{
-	public static Scanner kbr = new Scanner(System.in); 
+	public static Scanner kbr = new Scanner(System.in);
     public static Scanner kbr2 = new Scanner(System.in);
 	private static Dictionary lang;
 	
