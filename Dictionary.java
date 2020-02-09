@@ -14,6 +14,8 @@ public class Dictionary {
 		Lang = new WordStructures();
 		englishNouns = new ArrayList<String>();
 		equivNouns = new ArrayList<String>();
+		engWords = new ArrayList<ArrayList<String>>();
+		aelgarWords = new ArrayList<String>();
 		try {
 			fillNounList();
 		} catch (IOException e) {
@@ -192,14 +194,15 @@ public class Dictionary {
 	public String translateToAelgai(String word) {
 		String translation = "";
 		for (int i = 0; i < engWords.size(); i++) {
-			for(String engWord : engWords.get(i)){
-				if(word.equalsIgnoreCase(engWord)) {
+			for(int a = 0; a<engWords.get(i).size();i++){
+				if(word.equalsIgnoreCase(engWords.get(i).get(a))) {
 					translation = aelgarWords.get(i);
-					return translation;
+				} else{
+				    translation = "(no translation for " + word + ")";
 				}
 			}
 		}
-		return "(no translation for " + word + ")";
+		return translation;
 	}
 
 	public String translate(String word) {
