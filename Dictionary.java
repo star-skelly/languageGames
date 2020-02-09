@@ -18,6 +18,7 @@ public class Dictionary {
 		aelgarWords = new ArrayList<String>();
 		try {
 			fillNounList();
+			fillEngWordList();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -193,8 +194,11 @@ public class Dictionary {
 
 	public String translateToAelgai(String word) {
 		String translation = "";
+		translation = "sa";
 		for (int i = 0; i < engWords.size(); i++) {
-			for(int a = 0; a<engWords.get(i).size();i++){
+			translation = "blech";
+			for(int a = 0; a < engWords.get(i).size();a++){
+			    translation = "huh";
 				if(word.equalsIgnoreCase(engWords.get(i).get(a))) {
 					translation = aelgarWords.get(i);
 				} else{
