@@ -200,9 +200,7 @@ public class Dictionary {
 			for(int a = 0; a < engWords.get(i).size();a++){
 			    translation = "huh";
 				if(word.equalsIgnoreCase(engWords.get(i).get(a))) {
-					translation = aelgarWords.get(i);
-				} else{
-				    translation = "(no translation for " + word + ")";
+					return aelgarWords.get(i);
 				}
 			}
 		}
