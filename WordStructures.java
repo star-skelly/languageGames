@@ -4,25 +4,27 @@ public class WordStructures {
 
 	public static Scanner kbr = new Scanner(System.in);
 	public static Scanner kbr2 = new Scanner(System.in);
-	private int langDiversity = 3;
-	private String C = "1";
-	private String V = "0";
-	private String[][] vowels = { { "a", "á", "à", "aa", "a'a", "ai", "ae", "ao", "au" /* A (if you need labeling for this part, you're an idiot) */ },
-			{ "e", "é","ee", "è", "ei", "ea", "eu", "eo" /* E */ },
-			{ "o", "oa","oo", "oi", "ou", "oe", "ò", "ó"/* O */ },
-			{ "u", "ue", "uu","ua", "ui", "uo", "ú", "ù" /* U */ },
-			{ "i", "ia", "ii","ie", "io", "iu", "i'i", "ì", "í"/* I */ }, { "'", " ", "" /* Silence */ } };
+	private final int langDiversity = 3;
+	private final String C = "1";
+	private final String V = "0";
+	private final String[][] vowels = { { "a", "\u00E1", "\u00E0"  /* A (if you need labeling for this part, you're an idiot) */ },
+			{ "e", "\u00E9", "\u00E8" /* E */ },
+			{ "o", "\u00F2", "\u00F3"/* O */ },
+			{ "u", "\u00FA", "\u00F9" /* U */ },
+			{ "i", "\u00EC", "\u00ED"/* I */ },
+			{"a'a","aa", "a'a", "ai", "ae", "ao", "au","e'e","ee", "ei", "ea", "eu", "eo","o'o","oo","oa", "oi", "ou", "oe","u'u", "uu","ue", "ua", "ui", "uo","i'i","ia", "ii","ie", "io", "iu"/*doubles*/},
+			{ "'", " "/* Silence */ } };
 
-	private String[] vowelset;
-	private String[] conset;
-	private String[][] consonants = { { "b", "d", "v", "g"/* hard-soft */ },
+	private final String[] vowelset;
+	private final String[] conset;
+	private final String[][] consonants = { { "b", "d", "v", "g"/* hard-soft */ },
 			{ "w", "l", "m", "n", "r", "s", "y"/* soft */ }, { "c", "z", "s" /* s-ish */ },
 			{ "h", "f", "th", "v", "z", "j"/* th-ish */ }, { "q", "k", "c", "t", "p", "x" /* hard */ },
 			{ "sh", "j", "wh", "f", "s"/* super soft */ },
 			{ "b", "c", "d", "g", "l", "m", "n", "p", "r", "s", "t"/* normality */ },
 			{ "d", "g", "l", "n", "r", "s", "t"/* super-normal */ },
-			{ "st", "dj", "tr", "dr", "sd", "kj", "kr", "cr", "ck", "rx"/* doubles */ } };
-	private String[] wordStructure;
+			{ "st", "dj", "tr", "dr", "sd", "kj", "kr", "cr", "ck", "rx","mw","nw","mb","nb","ng"/* doubles */ } };
+	private final String[] wordStructure;
 
 	public WordStructures() {
 		vowelset = new String[vowels.length * langDiversity];
@@ -39,17 +41,25 @@ public class WordStructures {
 		for (int b = 0; b < langDiversity; b++) {
 			for (int i = 0; i < vowels.length; i++) {
 				int random = (int) (Math.random() * 101);
-				if (i != vowels.length - 1) {
+				if (i<5) { //if it's in the single normal zone
 					if (random < 90) {
 						vowelset[a] = vowels[i][0];
 					} else {
 						vowelset[a] = vowels[i][(int) (Math.random() * vowels[i].length)];
 					}
-				} else {
-					if (random < 5) {
+				} else if(i==5){ //if it's the weird-ass double zone
+					if(random<1){//5% chance to actually take a double
 						vowelset[a] = vowels[i][(int) (Math.random() * vowels[i].length)];
-					} else {
-						vowelset[a] = vowels[i - 3][(int) (Math.random() * vowels[i].length)];
+					} else{//99% to skip it
+						int newPos = i-(int) (Math.random() * (vowels.length-2));
+						vowelset[a] = vowels[newPos][(int) (Math.random() * vowels[newPos].length)];
+					}
+				}else { //if it's in the silent zone
+					if (random < 5) { //5% chance to get any of the silences
+						vowelset[a] = vowels[i][(int) (Math.random() * vowels[i].length)];
+					} else{ //95% to skip it
+						int newPos = i-(int) (Math.random() * (vowels.length-2));
+						vowelset[a] = vowels[newPos][(int) (Math.random() * vowels[newPos].length)];
 					}
 				}
 				a++;
