@@ -1,5 +1,5 @@
-Noun
-Proffession/People/Person
+Nouns
+Proffessions/People/Person/Job
 fighter/guard
 fighter/attacker/assassin
 ruler/Empress/Queen/King
@@ -7,21 +7,25 @@ watcher/warden
 Councillor
 speaker for the underdogs
 speaker
-Ambassador
+"Ambassador"
 Seer
 derogatory term for Islander/bird poop
-my love/spouse/girlfriend/boyfriend
-my love/family/friend
+my love/spouse/girlfriend/boyfriend (family is main role)
+family/friend
+lover/spouse (children is not primary role)
+"spouse/child-bearer"
 poor/beggar/homeless
-us
+"us"
 them/other
 it/that
 she
 he
-me/i/myself
-you
-y'all
+"me"/"i"/myself
+"you"
+"y'all"
 citizen
+paper/silk/scroll
+traditional curved sword
 Not Physical
 love/friendship
 name
@@ -32,6 +36,7 @@ peace
 law
 rule/domination/reign
 travel/journey/path
+story
 language
 something received/gift/curse/blessing
 aspiration/hope/wish
@@ -39,8 +44,9 @@ whimsy/oddities/magic/weirdness
 curses/usually talking about a force greater than oneself
 step/movement
 unit
-word
+"word"
 skill/art
+dreamwalk
 time
 current time/present
 future
@@ -57,13 +63,14 @@ world
 border
 claw
 body/vessel/vase
+2 string musical instrument
 animal
 cat
 kitten
 puppy
 dog
 bird
-specific type of brightly colored jungle bird
+"specific type of brightly colored jungle bird"
 palace/castle/mansion
 moon
 water
@@ -74,7 +81,7 @@ day/light
 string/thread
 home
 institute/academy/school
-Verbs
+Verbs (to use a verb, add a -ija to the end)
 run
 command/order/demand
 please/beg you
@@ -89,6 +96,7 @@ righteously invade
 draw
 write
 design
+translate
 stare mildly/see/look
 appears to be/seems to be
 murder unjustly (curse word)
@@ -97,14 +105,18 @@ watch/meddle from a distance
 help
 tangle/weave/get in the way/knot
 tangle/weave on purpose
-is/to be/exist
+"is"/"to be"/exist
 fill
 lose touch/fall apart/become estranged/lose
 follow
+flash
 lead
+pull
 have/own
 pretend/fake
+try/attempt
 end/finish
+spill/overflow
 Adjectives
 color
 pink
@@ -140,23 +152,25 @@ smart
 blessed/holy
 rare/unusual
 valuable/expensive
+necessary/required
 fair/just
-Exclamation
-oh
+TRUE
+Exclamations
+"oh"
 Other
-the
-yes
+"the"
+"yes"
 hello/salutations/greetings
 goodbye/farewell
-a
-and
-of
-in
-through
-to
-but
-from
-at
-that
-this
+"a"
+"and"
+"of"
+"in"
+"through"
+"to"
+"but"
+"from"
+"at"
+"that"
+"this"
 Question

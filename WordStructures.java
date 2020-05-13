@@ -8,22 +8,25 @@ public class WordStructures {
 	private final String C = "1";
 	private final String V = "0";
 	private final String[][] vowels = { { "a", "\u00E1", "\u00E0"  /* A (if you need labeling for this part, you're an idiot) */ },
-			{ "e", "\u00E9", "\u00E8" /* E */ },
-			{ "o", "\u00F2", "\u00F3"/* O */ },
+			{ "e", "\u00E9", "\u00E8","ee" /* E */ },
+			{ "o", "\u00F2", "\u00F3","oo"/* O */ },
 			{ "u", "\u00FA", "\u00F9" /* U */ },
 			{ "i", "\u00EC", "\u00ED"/* I */ },
-			{"a'a","aa", "a'a", "ai", "ae", "ao", "au","e'e","ee", "ei", "ea", "eu", "eo","o'o","oo","oa", "oi", "ou", "oe","u'u", "uu","ue", "ua", "ui", "uo","i'i","ia", "ii","ie", "io", "iu"/*doubles*/},
-			{ "'", " "/* Silence */ } };
+			{"a'a","aa", "a'a", "ai", "ae", "ao", "au","e'e", "ei", "ea", "eu", "eo","o'o","oa", "oi", "ou", "oe","u'u", "uu","ue", "ua", "ui", "uo","i'i","ia", "ii","ie", "io", "iu"/*doubles*/},
+			{ "'"," ","-"/* Silence */ } };
 
 	private final String[] vowelset;
 	private final String[] conset;
 	private final String[][] consonants = { { "b", "d", "v", "g"/* hard-soft */ },
-			{ "w", "l", "m", "n", "r", "s", "y"/* soft */ }, { "c", "z", "s" /* s-ish */ },
-			{ "h", "f", "th", "v", "z", "j"/* th-ish */ }, { "q", "k", "c", "t", "p", "x" /* hard */ },
+			{ "w", "l", "m", "n", "r", "s", "y"/* soft */ },
+			{ "c", "z", "s" /* s-ish */ },
+			{ "h", "f", "th", "v", "z", "j"/* th-ish */ },
+			{ "q", "k", "c", "t", "p", "x" /* hard */ },
 			{ "sh", "j", "wh", "f", "s"/* super soft */ },
 			{ "b", "c", "d", "g", "l", "m", "n", "p", "r", "s", "t"/* normality */ },
 			{ "d", "g", "l", "n", "r", "s", "t"/* super-normal */ },
-			{ "st", "dj", "tr", "dr", "sd", "kj", "kr", "cr", "ck", "rx","mw","nw","mb","nb","ng"/* doubles */ } };
+			{ "st", "dj", "tr", "dr", "sd", "kj", "kr", "cr", "ck", "rx"/* hard doubles */ },
+			{"mw","nw","mb","nb","ng" /*soft doubles*/}};
 	private final String[] wordStructure;
 
 	public WordStructures() {
@@ -42,7 +45,7 @@ public class WordStructures {
 			for (int i = 0; i < vowels.length; i++) {
 				int random = (int) (Math.random() * 101);
 				if (i<5) { //if it's in the single normal zone
-					if (random < 90) {
+					if (random < 95) { //95% chance you get a normal vowel for each (25% chance you'll have an accented vowel somewhere)
 						vowelset[a] = vowels[i][0];
 					} else {
 						vowelset[a] = vowels[i][(int) (Math.random() * vowels[i].length)];
@@ -76,8 +79,8 @@ public class WordStructures {
 	public void fillConsonants() {
 		int a = 0;
 		for (int b = 0; b < langDiversity; b++) {
-			for (int i = 0; i < consonants.length; i++) {
-				conset[a] = consonants[i][(int) (Math.random() * consonants[i].length)];
+			for (String[] consonant : consonants) {
+				conset[a] = consonant[(int) (Math.random() * consonant.length)];
 				a++;
 			}
 		}

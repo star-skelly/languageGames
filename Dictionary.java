@@ -37,19 +37,26 @@ public class Dictionary {
 		Scanner iFile = new Scanner(new File("eng.txt"));
 		Scanner dFile = new Scanner(new File("aelgai.txt"));
 		while (iFile.hasNext()) {
-			ArrayList<String> temp = new ArrayList<String>();
+			String temp = "";
 			ArrayList<String> temp1 = new ArrayList<String>();
-			temp.add(iFile.nextLine());
-			for(int a = 0; a < temp.size(); a++){
-				int prev = 0;
-				int sized = temp.size()-1;
-				String wordeds = temp.get(sized);
-				if(wordeds.substring(a,a+1).equals("/")){
-					temp1.add(wordeds.substring(prev,a));
-					prev=a+1;
+			temp+=iFile.nextLine();
+			int prev = 0;
+			String singleWord = "";
+			for(int a = 0; a < temp.length(); a++){
+				if(temp.substring(a,a+1).equals("/")){
+					temp1.add(temp.substring(prev,a));
+					//System.out.print(temp.substring(prev,a)+" ");
+					prev=a+1; //adds the words to arraylist of english words meaning the same Aelgai word (but doesn't get the last one)
+				}else {
+					singleWord=temp;
 				}
 			}
-			engWords.add(temp);
+			if(prev==0) {
+				temp1.add(singleWord);
+			} else{
+				temp1.add(singleWord.substring(prev));
+			}
+			engWords.add(temp1);
 			aelgarWords.add(dFile.nextLine());
 		}
 	}
@@ -58,19 +65,6 @@ public class Dictionary {
 		for (int i = 0; i < englishNouns.size(); i++) {
 			System.out.println(englishNouns.get(i) + " : " + equivNouns.get(i));
 		}
-	}
-
-	public String cleanTranslate(String sentence) {
-		String[] separate = sentence.split(" ");
-		boolean cont = true;
-		while (cont) {
-			for (String word : separate) {
-				if (!(word.equals("\\."))) {
-
-				}
-			}
-		}
-		return "";
 	}
 
 	public String trueTranslate(String sentence) { // Oof just ended it
@@ -93,40 +87,42 @@ public class Dictionary {
 		for(int i = 0; i<sentence.length(); i++){
 			int spaceCount = 0;
 			//checks for each type of punctuation
-			if(sentence.substring(i, i+1).equals(".")){
-				numP++;
-				//counts the number of spaces before it
-				for (int B = 0; B < i; B++) {
-					if (sentence.substring(B, B + 1).equals(" ")) {
-						spaceCount++;
+			//counts the number of spaces before it
+			//adds it to the positions
+			switch (sentence.substring(i, i + 1)) {
+				case "." -> {
+					numP++;
+					for (int B = 0; B < i; B++) {
+						if (sentence.substring(B, B + 1).equals(" ")) {
+							spaceCount++;
+						}
 					}
-				}
-				//adds it to the positions
-				ppositions.add(spaceCount);
-			} else if(sentence.substring(i, i+1).equals(",")){
-				numC++;
-				for (int B = 0; B < i; B++) {
-					if (sentence.substring(B, B + 1).equals(" ")) {
-						spaceCount++;
+					ppositions.add(spaceCount);
+				}case "," -> {
+					numC++;
+					for (int B = 0; B < i; B++) {
+						if (sentence.substring(B, B + 1).equals(" ")) {
+							spaceCount++;
+						}
 					}
-				}
-				cpositions.add(spaceCount);
-			}else if(sentence.substring(i, i+1).equals("?")){
-				numQ++;
-				for (int B = 0; B < i; B++) {
-					if (sentence.substring(B, B + 1).equals(" ")) {
-						spaceCount++;
+					cpositions.add(spaceCount);
+				}case "?" -> {
+					numQ++;
+					for (int B = 0; B < i; B++) {
+						if (sentence.substring(B, B + 1).equals(" ")) {
+							spaceCount++;
+						}
 					}
-				}
-				qpositions.add(spaceCount);
-			} else if(sentence.substring(i, i+1).equals("!")){
-				numE++;
-				for (int B = 0; B < i; B++) {
-					if (sentence.substring(B, B + 1).equals(" ")) {
-						spaceCount++;
+					qpositions.add(spaceCount);
+				}case "!" -> {
+					numE++;
+					for (int B = 0; B < i; B++) {
+						if (sentence.substring(B, B + 1).equals(" ")) {
+							spaceCount++;
+						}
 					}
+					epositions.add(spaceCount);
 				}
-				epositions.add(spaceCount);
 			}
 
 		}
@@ -193,13 +189,25 @@ public class Dictionary {
 	}
 
 	public String translateToAelgai(String word) {
-		String translation = "";
-		translation = "sa";
+		/*//toString for engWords
+		for(ArrayList<String> e: engWords){
+			for(String b:e){
+				System.out.print(b);
+			}
+			System.out.println();
+		}*/
+		String translation = "sa";
 		for (int i = 0; i < engWords.size(); i++) {
-			translation = "blech";
+			translation = ""+engWords.get(i).size();
 			for(int a = 0; a < engWords.get(i).size();a++){
-			    translation = "huh";
+				translation += engWords.get(i).get(a);
 				if(word.equalsIgnoreCase(engWords.get(i).get(a))) {
+					return aelgarWords.get(i);
+				}
+			}
+			if(engWords.get(i).size()==1) {
+				translation = "weirdo";
+				if (word.equalsIgnoreCase(engWords.get(i).get(0))) {
 					return aelgarWords.get(i);
 				}
 			}

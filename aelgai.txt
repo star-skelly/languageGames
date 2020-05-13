@@ -1,5 +1,5 @@
-boloqai
-zojaeq
+boloqai'zai
+zojaeq'zai
 qaeli
 nzumbi
 ainyi
@@ -12,6 +12,8 @@ zambadan
 daijeni
 qavaen
 vaenuja
+otzoalae
+qaguja
 oyu
 sij
 oyeni
@@ -22,6 +24,8 @@ saj
 mba
 mbaye
 gari
+gaza
+nzubi
 dalamain
 vaen
 quambo
@@ -32,6 +36,7 @@ nqera
 qoqiza
 nqeno
 yal
+yabueza
 joidif
 rovaia
 raevo
@@ -41,6 +46,7 @@ don
 dax
 dainqif
 xafai
+zamuita
 vaisan
 uasa
 yasa
@@ -57,6 +63,7 @@ haela
 baiga
 gan
 nzila
+qaiqua
 ilqai
 aimber
 aimumu
@@ -89,6 +96,7 @@ quaelon
 zileianaita
 sainqa
 otexa
+nbuxenbanuo
 nizantelo
 nizanae
 tzal
@@ -101,11 +109,15 @@ zae
 qualjei
 qaeza
 zigqa
+teqi
 aqgiz
+gqarit
 draqi
 xubuef
+buefan
 nqeti
-gahael
+jeiteqi
+gahael'zai
 novaez
 terzai
 qualti
@@ -140,8 +152,10 @@ neqej
 zasasaeqo
 teraeqo
 obaeq
+baeqasa
 ximiqae
-boqlor
+ximi
+boqlor'zai
 ai
 mqata
 qa
