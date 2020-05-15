@@ -9,6 +9,17 @@ public class Dictionary {
 	private static ArrayList<String> equivNouns;
 	private static ArrayList<ArrayList<String>> engWords;
 	private static ArrayList<String> aelgarWords;
+	//variables for stripping sentences
+	//arrays to hold punctuation positions
+	private ArrayList<Integer> ppositions = new ArrayList<Integer>();
+	private ArrayList<Integer> cpositions = new ArrayList<Integer>();
+	private ArrayList<Integer> epositions = new ArrayList<Integer>();
+	private ArrayList<Integer> qpositions = new ArrayList<Integer>();
+	//number of each type (i know this is unnecessary)
+	private int numP = 0;
+	private int numC = 0;
+	private int numE = 0;
+	private int numQ = 0;
 
 	public Dictionary() {
 		Lang = new WordStructures();
@@ -66,18 +77,7 @@ public class Dictionary {
 			System.out.println(englishNouns.get(i) + " : " + equivNouns.get(i));
 		}
 	}
-
-	public String trueTranslate(String sentence) { // Oof just ended it
-		//arrays to hold punctuation positions
-		ArrayList<Integer> ppositions = new ArrayList<Integer>();
-		ArrayList<Integer> cpositions = new ArrayList<Integer>();
-		ArrayList<Integer> epositions = new ArrayList<Integer>();
-		ArrayList<Integer> qpositions = new ArrayList<Integer>();
-		//number of each type (i know this is unnecessary)
-		int numP = 0;
-		int numC = 0;
-		int numE = 0;
-		int numQ = 0;
+	public String[] stripSentence(String sentence){
 		//Strings we will be filling
 		String translation = "";
 		String stripped = "";
@@ -146,6 +146,12 @@ public class Dictionary {
 			stripped += word;
 		}
 		String[] words = stripped.split(" ");
+		return words;
+	}
+
+	public String trueTranslate(String sentence) {
+		String[] words=stripSentence(sentence);
+		String translation = "";
 		int counter = 0;
 		for (String word : words) {
 			translation += translate(word);
@@ -188,15 +194,15 @@ public class Dictionary {
 		return capital;
 	}
 
-	public String translateToAelgai(String word) {
-		/*//toString for engWords
+	public String translateWordToAelgai(String word) {
+		/*//toString for engWords for debugging purposes
 		for(ArrayList<String> e: engWords){
 			for(String b:e){
 				System.out.print(b);
 			}
 			System.out.println();
 		}*/
-		String translation = "sa";
+		String translation = "";
 		for (int i = 0; i < engWords.size(); i++) {
 			translation = ""+engWords.get(i).size();
 			for(int a = 0; a < engWords.get(i).size();a++){
@@ -206,7 +212,7 @@ public class Dictionary {
 				}
 			}
 			if(engWords.get(i).size()==1) {
-				translation = "weirdo";
+				translation = "no translation for "+word;
 				if (word.equalsIgnoreCase(engWords.get(i).get(0))) {
 					return aelgarWords.get(i);
 				}
@@ -215,6 +221,50 @@ public class Dictionary {
 		return translation;
 	}
 
+	public String translateSentenceToAelgai(String sentence){
+		String[] words=stripSentence(sentence);
+		String translation = "";
+		int counter = 0;
+		for (String word : words) {
+			translation += translateWordToAelgai(word);
+			int countP = 0;
+			if (numP != 0)
+				for (int pos : ppositions) {
+					if (countP <= numP && pos == counter) {
+						translation += ".";
+						countP++;
+					}
+				}
+			int countC = 0;
+			if (numC != 0)
+				for (int pos : cpositions) {
+					if (countC <= numC && pos == counter) {
+						translation += ",";
+						countC++;
+					}
+				}
+			int countE = 0;
+			if (numE != 0)
+				for (int pos : epositions) {
+					if (countE <=numE && pos == counter) {
+						translation += "!";
+						countE++;
+					}
+				}
+			int countQ = 0;
+			if (numQ != 0)
+				for (int pos : qpositions) {
+					if (countQ <= numQ && pos == counter) {
+						translation += "?";
+						countQ++;
+					}
+				}
+			translation += " ";
+			counter++;
+		}
+		String capital = translation.substring(0, 1).toUpperCase() + translation.substring(1);
+		return capital;
+	}
 	public String translate(String word) {
 		String translation = "";
 		for (int i = 0; i < englishNouns.size(); i++) {

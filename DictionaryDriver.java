@@ -18,11 +18,12 @@ public class DictionaryDriver{
 			String line2 = kbr.nextLine();
 			if(line2.equalsIgnoreCase("STOP")){
 				keepGoing = false;
-			} else if(line2.equalsIgnoreCase("NEW")){
+			}else if(line2.equalsIgnoreCase("NEW")){
 				lang = new Dictionary();
 			}*/
+			System.out.println("English to Aelgai:");
 			String line = kbr.nextLine();
-			System.out.println("--"+lang.translateToAelgai(line)+"--");
+			System.out.println("--"+lang.translateSentenceToAelgai(line)+"--");
 		}
 	}
 }

@@ -5,17 +5,17 @@ public class MoreComplicatedLanguage {
 	public static Scanner kbr = new Scanner(System.in);
 	public static Scanner kbr2 = new Scanner(System.in);
 	private int langDiversity = 1;
-	private String[][] vowels = { { "a", "á", "à", "a'a", "ai", "ae", "ao", "au", "ӓ", "ӕ", "ã", "â" /* A (if you need labeling for this part, you're an idiot) */ },
-			{ "e", "é", "è", "ei", "ea", "eu", "eo", "ê", "ẽ", "ë" /* E */ },
-			{ "o", "oa", "oi", "ou", "oe", "ö", "ô", "õ", "ò", "ó"/* O */ },
-			{ "u", "ue", "ua", "ui", "uo", "ú", "ù", "ü", "û", "ũ"/* U */ },
-			{ "i", "ia", "ie", "io", "iu", "i'i", "ĩ", "ì", "í", "î", "ï"/* I */ }, 
+	private String[][] vowels = { { "a", "á", "à", "a'a", "ai", "ae", "ao", "au", "ӓ", "ӕ", "â" /* A (if you need labeling for this part, you're an idiot) */ },
+			{ "e", "é", "è", "ei", "ea", "eu", "eo", "ê", "ë" , "e'e"/* E */ },
+			{ "o", "oa", "oi", "ou", "oe", "ö", "ô", "ò", "ó", "o'o"/* O */ },
+			{ "u", "ue", "ua", "ui", "uo", "ú", "ù", "ü", "û", "u'u"/* U */ },
+			{ "i", "ia", "ie", "io", "iu", "i'i", "ì", "í", "î", "ï"/* I */ },
 			{ "'", "-", "`" /* Silence */ } };
 
 	private String[] vowelset;
 	private String[] conset;
-	private String[][] consonants = { { "b", "d", "v", "g"/* hard-soft */ },
-			{ "w", "l", "m", "n", "r", "s", "y"/* soft */ }, { "c", "z", "s" /* s-ish */ },
+	private String[][] consonants = { { "b", "d", "v", "g","mb","ng"/* hard-soft */ },
+			{ "w", "l", "m", "n", "r", "s", "y", "nw"/* soft */ }, { "c", "z", "s" /* s-ish */ },
 			{ "h", "f", "th", "v", "z", "j"/* th-ish */ }, { "q", "k", "c", "t", "p", "x" /* hard */ },
 			{ "sh", "j", "wh", "f", "s"/* super soft */ },
 			{ "b", "c", "d", "g", "l", "m", "n", "p", "r", "s", "t"/* normality */ },
