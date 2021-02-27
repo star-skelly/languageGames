@@ -48,11 +48,17 @@ public class Dictionary {
 		Scanner iFile = new Scanner(new File("eng.txt"));
 		Scanner dFile = new Scanner(new File("aelgai.txt"));
 		while (iFile.hasNext()) {
+			String line = "";
 			String temp = "";
 			ArrayList<String> temp1 = new ArrayList<String>();
-			temp+=iFile.nextLine();
+			line+=iFile.nextLine();
+			String[] unQuoted = line.split("\"");
+			for (String word : unQuoted) {
+				temp += word;
+			}
 			int prev = 0;
 			String singleWord = "";
+
 			for(int a = 0; a < temp.length(); a++){
 				if(temp.substring(a,a+1).equals("/")){
 					temp1.add(temp.substring(prev,a));
@@ -65,7 +71,7 @@ public class Dictionary {
 			if(prev==0) {
 				temp1.add(singleWord);
 			} else{
-				temp1.add(singleWord.substring(prev));
+				temp1.add(singleWord.substring(prev));//adds the last one
 			}
 			engWords.add(temp1);
 			aelgarWords.add(dFile.nextLine());
@@ -154,7 +160,7 @@ public class Dictionary {
 		String translation = "";
 		int counter = 0;
 		for (String word : words) {
-			translation += translate(word);
+			translation += checkForConjugation(word);
 			int countP = 0;
 			if (numP != 0)
 				for (int pos : ppositions) {
@@ -192,6 +198,31 @@ public class Dictionary {
 		}
 		String capital = translation.substring(0, 1).toUpperCase() + translation.substring(1);
 		return capital;
+	}
+
+	public String checkForConjugation(String word){
+		//maybe add prefixes & suffixes: re- pre- anti- de- dis- -ist -ism
+		if(translate(word).equals("(no translation for " + word + ")") && word.length() != 0 && !word.equals(" ")){
+			if(word.substring(word.length()-1, word.length()).equals("s")){
+				return translate(word.substring(0, word.length()-1)) + translate("s");
+			}
+			if(word.substring(word.length()-2,word.length()).equals("ed")){
+				return translate(word.substring(0, word.length()-2)) + translate("ed");
+			}
+			if(word.substring(word.length()-3,word.length()).equals("ing")) {
+				return translate(word.substring(0, word.length() - 3)) + translate("ing");
+			}
+			if(word.substring(word.length()-2,word.length()).equals("er")) {
+				return translate(word.substring(0, word.length() - 2)) + translate("er");
+			}
+			if(word.substring(word.length()-3,word.length()).equals("ion")) {
+				return translate(word.substring(0, word.length() - 3) + "e") + translate("ion");
+			}
+		}
+		if(!word.equals(" ") && !word.equals("")){
+			return translate(word);
+		}
+		return word;
 	}
 
 	public String translateWordToAelgai(String word) {

@@ -12,6 +12,9 @@ public class RhymeScheme {
 	public static int ABAAB = 9;
 	public static int AABA = 10;
 	public static int ABCB = 11;
+	public static int AA = 12;
+	public static int AAAA = 13;
+
 	private static String A;
 	private static String B;
 	private static String C;
@@ -127,6 +130,7 @@ public class RhymeScheme {
 			System.out.println(rhymeA());
 			System.out.println(rhymeA());
 			System.out.println(rhymeB());
+			System.out.println(rhymeB());
 			System.out.println(rhymeA());
 			break;
 		case 7:// AAAAA
@@ -163,6 +167,16 @@ public class RhymeScheme {
 			System.out.println(rhymeC());
 			System.out.println(rhymeB());
 			break;
+			case 12:// AA
+				System.out.println(rhymeA());
+				System.out.println(rhymeA());
+				break;
+			case 13:// AAAA
+				System.out.println(rhymeA());
+				System.out.println(rhymeA());
+				System.out.println(rhymeA());
+				System.out.println(rhymeA());
+				break;
 		default:
 			break;
 		}

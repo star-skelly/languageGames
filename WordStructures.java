@@ -13,7 +13,7 @@ public class WordStructures {
 			{ "u", "u", "\u00FA", "\u00F9" /* U */ },
 			{ "i", "i", "\u00EC", "\u00ED"/* I */ },
 			{"a'a","aa", "a'a", "ai", "ae", "ao", "au","e'e", "ei", "ea", "eu", "eo","o'o","oa", "oi", "ou", "oe","u'u", "uu","ue", "ua", "ui", "uo","i'i","ia", "ii","ie", "io", "iu"/*doubles*/},
-			{ "'"," ","-"/* Silence */ } };
+			{ "'","-"/* Silence */ } };
 
 	private final String[] vowelset;
 	private final String[] conset;

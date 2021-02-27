@@ -10,7 +10,7 @@ public class DictionaryDriver{
 		System.out.println("Let's generate a language:");
 		lang = new Dictionary();
 		while(keepGoing){
-			/*System.out.println("What do you want to translate?");
+			System.out.println("What do you want to translate?");
 			String line = kbr.nextLine();
 			System.out.println("--"+lang.trueTranslate(line)+"--");
 			System.out.println("Do you want to translate more, generate a new language or stop?");
@@ -20,10 +20,10 @@ public class DictionaryDriver{
 				keepGoing = false;
 			}else if(line2.equalsIgnoreCase("NEW")){
 				lang = new Dictionary();
-			}*/
-			System.out.println("English to Aelgai:");
+			}
+			/*System.out.println("English to Aelgai:");
 			String line = kbr.nextLine();
-			System.out.println("--"+lang.translateSentenceToAelgai(line)+"--");
+			System.out.println("--"+lang.translateWordToAelgai(line)+"--");*/
 		}
 	}
 }

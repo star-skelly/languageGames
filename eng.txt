@@ -161,7 +161,7 @@ high
 above
 up
 down
-not
+not/no
 like/similar
 against
 always
