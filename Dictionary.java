@@ -160,7 +160,7 @@ public class Dictionary {
 		String translation = "";
 		int counter = 0;
 		for (String word : words) {
-			translation += checkForConjugation(word);
+			translation += oddCases(word);
 			int countP = 0;
 			if (numP != 0)
 				for (int pos : ppositions) {
@@ -200,22 +200,38 @@ public class Dictionary {
 		return capital;
 	}
 
-	public String checkForConjugation(String word){
-		//maybe add prefixes & suffixes: re- pre- anti- de- dis- -ist -ism
-		if(translate(word).equals("(no translation for " + word + ")") && word.length() != 0 && !word.equals(" ")){
-			if(word.substring(word.length()-1, word.length()).equals("s")){
+	public String oddCases(String word){
+		//maybe add prefixes & suffixes: re- pre- anti- de- dis- -ist -ism -ity 's 't
+		//deal with numbers???
+		if(translate(word).equals("(no translation for " + word + ")") && word.length() > 1 && !word.equals(" ")){
+			String last3 = word.substring(word.length()-3,word.length());
+			String last2 = word.substring(word.length()-2,word.length());
+			String last = word.substring(word.length()-1,word.length());
+			if(last2.equals("'s")) {
+				return translate(word.substring(0, word.length() - 2)) + " " + translate("is");
+			}
+			if(last3.equals("n't")) {
+				if(word.equals("won't")){
+					return translate("will") + translate("not");
+				}
+				if(word.equals("can't")){
+					return translate("can") + translate("not");
+				}
+				return translate(word.substring(0, word.length() - 3)) + translate("not");
+			}
+			if(last.equals("s")){
 				return translate(word.substring(0, word.length()-1)) + translate("s");
 			}
-			if(word.substring(word.length()-2,word.length()).equals("ed")){
+			if(last2.equals("ed")){
 				return translate(word.substring(0, word.length()-2)) + translate("ed");
 			}
-			if(word.substring(word.length()-3,word.length()).equals("ing")) {
+			if(last3.equals("ing")) {
 				return translate(word.substring(0, word.length() - 3)) + translate("ing");
 			}
-			if(word.substring(word.length()-2,word.length()).equals("er")) {
+			if(last2.equals("er")) {
 				return translate(word.substring(0, word.length() - 2)) + translate("er");
 			}
-			if(word.substring(word.length()-3,word.length()).equals("ion")) {
+			if(last3.equals("ion")) {
 				return translate(word.substring(0, word.length() - 3) + "e") + translate("ion");
 			}
 		}
